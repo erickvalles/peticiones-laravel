@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,7 @@ Route::get('saludo/{nombre?}', function($nombre="Invitado"){
     $arreglo = [3,4,5,1,2,4];
     return view('saludar',compact('nombre','arreglo'));
 })->where('nombre',"[aA-zZ]+")->name("ruta_saludo");
+
+Route::get('prueba',[CategoriaController::class,'insertar']);
+Route::get('consultar',[CategoriaController::class,'consultar']);
+Route::get('actualizar',[CategoriaController::class,'actualizar']);
