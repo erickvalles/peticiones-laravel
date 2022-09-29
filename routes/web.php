@@ -33,3 +33,5 @@ Route::get('saludo/{nombre?}', function($nombre="Invitado"){
 Route::get('prueba',[CategoriaController::class,'insertar']);
 Route::get('consultar',[CategoriaController::class,'consultar']);
 Route::get('actualizar',[CategoriaController::class,'actualizar']);
+Route::get('borrar',[CategoriaController::class,'borrar']);
+Route::get('eliminadas',[CategoriaController::class,'categoriasEliminadas']);
