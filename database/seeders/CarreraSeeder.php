@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Categoria;
 
-class CategoriaSeeder extends Seeder
+use App\Models\Carrera;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+
+class CarreraSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +17,7 @@ class CategoriaSeeder extends Seeder
      */
     public function run()
     {
-        Categoria::factory()->count(15)->create();
+
+        Carrera::factory()->count(18)->create();
     }
 }

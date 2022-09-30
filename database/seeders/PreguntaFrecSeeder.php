@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PreguntaFrec;
 use Illuminate\Database\Seeder;
-use App\Models\Categoria;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CategoriaSeeder extends Seeder
+class PreguntaFrecSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CategoriaSeeder extends Seeder
      */
     public function run()
     {
-        Categoria::factory()->count(15)->create();
+        PreguntaFrec::factory()->count(20)->create();
     }
 }
