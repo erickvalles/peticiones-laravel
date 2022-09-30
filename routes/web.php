@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CategoriaController;
 
 /*
@@ -35,3 +36,5 @@ Route::get('consultar',[CategoriaController::class,'consultar']);
 Route::get('actualizar',[CategoriaController::class,'actualizar']);
 Route::get('borrar',[CategoriaController::class,'borrar']);
 Route::get('eliminadas',[CategoriaController::class,'categoriasEliminadas']);
+
+Route::resource('alumno', AlumnoController::class);

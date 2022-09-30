@@ -19,12 +19,15 @@ class DatabaseSeeder extends Seeder
         DB::table('categoria')->truncate();
         DB::table('carrera')->truncate();
         DB::table('preguntas_frec')->truncate();
+        DB::table('expediente')->truncate();
+        DB::table('alumno')->truncate();
         DB::statement("SET FOREIGN_KEY_CHECKS = 1;");
 
         $this->call([
             CategoriaSeeder::class,
             CarreraSeeder::class,
             PreguntaFrecSeeder::class,
+            AlumnoSeeder::class,
         ]);
     }
 }
