@@ -24,7 +24,6 @@ class ExpedienteFactory extends Factory
             "ciclo_ingreso"=>$this->faker->randomElement(["2019B","2020A","2020B"]),
             "semestre"=>$this->faker->numberBetween(1,12),
             "prom_ingreso"=>$this->faker->randomFloat(2,60,100),
-            "alumno_id"=>Alumno::inRandomOrder()->first()->id,
         ];
     }
 }

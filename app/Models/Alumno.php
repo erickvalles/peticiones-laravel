@@ -14,4 +14,8 @@ class Alumno extends Model
     public function expediente(){
         return $this->hasOne(Expediente::class);
     }
+
+    public function mensajes(){
+        return $this->belongsToMany(Mensaje::class,'mensaje_alumno');
+    }
 }

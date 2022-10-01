@@ -33,7 +33,7 @@ class CategoriaController extends Controller
         //$categorias = DB::select('select * from categoria'); //retorna un arreglo
         /*$categorias = DB::table('categoria')
             ->select('nombre')->get(); //retorna una colección*/
-        $categorias = Categoria::all();
+        $categorias = Categoria::with('preguntasFrecuentes')->get();
 
         /*$categorias->each(function ($categoria, $key) {
             echo strtoupper($categoria->nombre);

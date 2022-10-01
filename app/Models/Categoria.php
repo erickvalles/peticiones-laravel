@@ -14,4 +14,8 @@ class Categoria extends Model
     public $timestamps = false;
 
     protected $fillable = ["nombre"];
+
+    public function preguntasFrecuentes(){
+        return $this->hasMany(PreguntaFrec::class);
+    }
 }
