@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\FaqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,6 @@ Route::get('borrar',[CategoriaController::class,'borrar']);
 Route::get('eliminadas',[CategoriaController::class,'categoriasEliminadas']);
 
 Route::resource('alumno', AlumnoController::class);
+Route::resource('expediente',ExpedienteController::class);
+Route::resource('faq',FaqController::class);
+Route::get('categoria/{categoria}',[CategoriaController::class,'show'])->name('categoria.show');

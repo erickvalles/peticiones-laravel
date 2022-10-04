@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoriaController extends Controller
 {
-    public function insertar(){
+    /*public function insertar(){
         //DB::insert('insert into categoria (nombre) values (?)', ['Días festivos']);
         /*DB::table('categoria')->insert([
             ["nombre"=>"Baja de materias"],
@@ -21,24 +21,39 @@ class CategoriaController extends Controller
             "nombre"=>"Prácticas profesionales"
         ]);
         $categoria->save();
-        */
+
 
         $categoria = Categoria::create([
             "nombre"=>"Fraternidad"
         ]);
         return $categoria;
+    }*/
+
+    public function index(){
+        $categorias = Categoria::all();
+
+        return $categorias;
     }
 
-    public function consultar(){
+    /*public function consultar(){
         //$categorias = DB::select('select * from categoria'); //retorna un arreglo
         /*$categorias = DB::table('categoria')
-            ->select('nombre')->get(); //retorna una colección*/
+            ->select('nombre')->get(); //retorna una colección
         $categorias = Categoria::with('preguntasFrecuentes')->get();
 
         /*$categorias->each(function ($categoria, $key) {
             echo strtoupper($categoria->nombre);
-        });*/
+        });
         dd($categorias);
+    }*/
+
+    public function create(){
+        //mostrar un formulario
+    }
+
+    //id
+    public function show(Categoria $categoria){
+        return view('usuario.categoria',compact('categoria'));
     }
 
     public function actualizar(){

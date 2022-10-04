@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expediente;
+use App\Models\PreguntaFrec;
 use Illuminate\Http\Request;
 
-class ExpedienteController extends Controller
+class FaqController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        return view('usuario.faq');
+        $preguntas = PreguntaFrec::paginate(5);
+
+        return view('usuario.faq',compact('preguntas'));
     }
 
     /**
@@ -41,10 +43,10 @@ class ExpedienteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expediente  $expediente
+     * @param  \App\Models\PreguntaFrec  $preguntaFrec
      * @return \Illuminate\Http\Response
      */
-    public function show(Expediente $expediente)
+    public function show(PreguntaFrec $preguntaFrec)
     {
         //
     }
@@ -52,10 +54,10 @@ class ExpedienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Expediente  $expediente
+     * @param  \App\Models\PreguntaFrec  $preguntaFrec
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expediente $expediente)
+    public function edit(PreguntaFrec $preguntaFrec)
     {
         //
     }
@@ -64,10 +66,10 @@ class ExpedienteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expediente  $expediente
+     * @param  \App\Models\PreguntaFrec  $preguntaFrec
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expediente $expediente)
+    public function update(Request $request, PreguntaFrec $preguntaFrec)
     {
         //
     }
@@ -75,10 +77,10 @@ class ExpedienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expediente  $expediente
+     * @param  \App\Models\PreguntaFrec  $preguntaFrec
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expediente $expediente)
+    public function destroy(PreguntaFrec $preguntaFrec)
     {
         //
     }
