@@ -52,7 +52,8 @@ class CategoriaController extends Controller
     }
 
     //id
-    public function show(Categoria $categoria){
+    public function show(Categoria $categorium){
+        $categoria = $categorium;
         return view('usuario.categoria',compact('categoria'));
     }
 

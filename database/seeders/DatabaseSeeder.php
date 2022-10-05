@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         DB::table('preguntas_frec')->truncate();
         DB::table('expediente')->truncate();
         DB::table('alumno')->truncate();
+        DB::table('tramite')->truncate();
         DB::statement("SET FOREIGN_KEY_CHECKS = 1;");
 
         $this->call([
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CarreraSeeder::class,
             PreguntaFrecSeeder::class,
             AlumnoSeeder::class,
+            TramiteSeeder::class,
         ]);
     }
 }
