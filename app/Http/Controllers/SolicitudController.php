@@ -16,8 +16,9 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = Solicitud::all();
-        return view('admin.solicitudes',compact('solicitudes'));
+        $solicitudes = Solicitud::with('solicitante')->get();
+
+        return view('admin.solicitudes.index',compact('solicitudes'));
     }
 
     /**

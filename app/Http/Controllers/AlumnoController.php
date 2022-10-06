@@ -14,10 +14,11 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::with('expediente','mensajes')->get();
+        /*$alumnos = Alumno::with('expediente','mensajes')->get();
 
-        dd($alumnos->first());
-        return view('welcome', compact('alumnos'));
+        dd($alumnos->first());*/
+        $alumnos = Alumno::all();
+        return view('admin.alumnos.index', compact('alumnos'));
 
     }
 

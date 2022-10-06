@@ -10,5 +10,8 @@ class Solicitud extends Model
     use HasFactory;
     protected $table = "solicitud";
 
+    public function solicitante(){
+        return $this->belongsTo(Alumno::class,'alumno_id','id');
+    }
 
 }

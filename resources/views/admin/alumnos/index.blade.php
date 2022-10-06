@@ -3,51 +3,37 @@
 @section('admin_content')
 <div class="row">
     <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="m-0">Featured</h5>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title">Special title treatment</h6>
-
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
 
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h5 class="m-0">Solicitudes nuevas</h5>
+          <h5 class="m-0">Alumnos registrados</h5>
         </div>
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="tabla_solicitudes" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Detalle</th>
-                  <th>Fecha</th>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>E-mail</th>
                   <th>Estatus</th>
-                  <th>Solicitante</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($solicitudes as $solicitud)
+                @foreach($alumnos as $alumno)
                 <tr>
-                  <td>{{$solicitud->id}}</td>
-                  <td>{{$solicitud->detalle}}</td>
-                  <td>{{$solicitud->created_at}}</td>
-                  <td>{{$solicitud->estatus_actual}}</td>
-                  <td>{{$solicitud->alumno_id}}</td>
+                  <td>{{$alumno->codigo}}</td>
+                  <td>{{$alumno->nombre_completo}}</td>
+                  <td>{{$alumno->email}}</td>
+                  <td>{{$alumno->estatus}}</td>
                 </tr>
                 @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th>ID</th>
-                    <th>Detalle</th>
-                    <th>Fecha</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>E-mail</th>
                     <th>Estatus</th>
-                    <th>Solicitante</th>
                 </tr>
                 </tfoot>
               </table>
@@ -84,19 +70,10 @@
 
 <script>
     $(function () {
-      $("#example1").DataTable({
+      $("#tabla_solicitudes").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
+      }).buttons().container().appendTo('#tabla_solicitudes_wrapper .col-md-6:eq(0)');
     });
   </script>
 
