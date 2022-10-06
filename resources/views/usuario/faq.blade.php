@@ -21,7 +21,7 @@
           @endforeach
        </div>
 
-       {!! $preguntas->links() !!}
+
     </div>
  </section>
  <!-- /faq -->

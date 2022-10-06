@@ -14,7 +14,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $preguntas = PreguntaFrec::paginate(5);
+        $preguntas = PreguntaFrec::all();
 
         return view('usuario.faq',compact('preguntas'));
     }

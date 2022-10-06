@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\ExpedienteController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\Auth\AlumnoAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +44,14 @@ Route::get('eliminadas',[CategoriaController::class,'categoriasEliminadas']);*/
 Route::resource('alumno', AlumnoController::class);
 Route::resource('expediente',ExpedienteController::class);
 Route::resource('faq',FaqController::class);
-Route::resource('solicitud',SolicitudController::class);
+
+Route::resource('solicitud',SolicitudController::class)->middleware('auth:alumno');
+
 //Route::get('categoria/{categoria}',[CategoriaController::class,'show'])->name('categoria.show');
 Route::resource('categoria',CategoriaController::class)->parameters([
     'categoria' => 'categoria'
 ]);
+
+Route::get('alumnos/login',[AlumnoAuthController::class,'showLoginForm'])->name('alumnos.login_form');
+Route::post('alumnos/login',[AlumnoAuthController::class,'login'])->name('alumnos.login');
+Route::post('alumnos/logout',[AlumnoAuthController::class,'logout'])->name('alumnos.logout');

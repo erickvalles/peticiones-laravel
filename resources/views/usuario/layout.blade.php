@@ -55,8 +55,17 @@
 
          <div class="navbar-end ml-0">
             <div class="navbar-item py-0">
-               <a href="changelog.html" class="btn btn-sm btn-outline-primary ml-4">Iniciar sesión</a>
-               <a href="contact.html" class="btn btn-sm btn-primary ml-4">Nueva solicitud</a>
+                @guest('alumno')
+                    <a href="{{route('alumnos.login_form')}}" class="btn btn-sm btn-outline-primary ml-4">Iniciar sesión</a>
+                @endguest
+
+               @auth('alumno')
+                    <a href="{{route('solicitud.create')}}" class="btn btn-sm btn-primary ml-4">Nueva solicitud</a>
+                    <form method="POST" action="{{route('alumnos.logout')}}">
+                        @csrf
+                        <input type="submit" value="Salir" class="btn btn-sm btn-outline-primary ml-4">
+                    </form>
+               @endauth
             </div>
          </div>
       </div>

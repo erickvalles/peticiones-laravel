@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:alumno')->only(['create']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,12 +48,13 @@ class SolicitudController extends Controller
     public function store(RequestGuardaSolicitud $request)
     {
 
+        //dd(auth('alumno')->user());
         $solicitud = new Solicitud();
         $solicitud->detalle = $request["detalle"];
         $solicitud->estatus_actual = "nuevo";
         $solicitud->archivo = "";
         $solicitud->tramite_id = $request["tramite_id"];
-        $solicitud->alumno_id = 1;
+        $solicitud->alumno_id = auth('alumno')->user()->id;
 
         $solicitud->save();
     }
