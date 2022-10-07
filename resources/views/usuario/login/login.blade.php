@@ -7,7 +7,7 @@
        <div class="columns is-desktop is-justify-content-center">
           <div class="column is-8-desktop">
              <div class="p-6 shadow rounded content">
-                <h2 class="section-title">Solicitud</h2>
+                <h2 class="section-title">Iniciar sesión</h2>
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     <div class="notification is-danger">

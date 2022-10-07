@@ -48,9 +48,13 @@
       <div id="navbar-links" class="navbar-menu">
          <div class="navbar-start ml-auto">
             <a class="navbar-item" href="index.html">Inicio</a>
-            <a class="navbar-item" href="list.html">Solicitudes</a>
-            <a class="navbar-item" href="search.html">Preguntas frecuentes</a>
-            <a class="navbar-item" href="search.html">Mensajes</a>
+            @auth('alumno')
+                <a class="navbar-item" href="{{route('solicitudes_alumno')}}">Solicitudes</a>
+                <a class="navbar-item" href="search.html">Mensajes</a>
+            @endauth
+
+            <a class="navbar-item" href="{{route('faq.index')}}">Preguntas frecuentes</a>
+
          </div>
 
          <div class="navbar-end ml-0">

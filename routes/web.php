@@ -41,11 +41,21 @@ Route::get('actualizar',[CategoriaController::class,'actualizar']);
 Route::get('borrar',[CategoriaController::class,'borrar']);
 Route::get('eliminadas',[CategoriaController::class,'categoriasEliminadas']);*/
 
-Route::resource('alumno', AlumnoController::class);
+
 Route::resource('expediente',ExpedienteController::class);
 Route::resource('faq',FaqController::class);
 
-Route::resource('solicitud',SolicitudController::class)->middleware('auth:alumno');
+Route::group(['middleware'=>['auth:alumno'],'prefix'=>'alumno'],function(){
+    Route::resource('solicitud',SolicitudController::class)->only(['create','store']);
+    Route::get('solicitudes',[SolicitudController::class,'solicitudesAlumno'])->name('solicitudes_alumno');
+});
+
+Route::group(['prefix'=>'admin'], function(){
+    Route::resource('solicitud',SolicitudController::class)->except(['create','store']);
+    Route::resource('alumno', AlumnoController::class);
+});
+
+
 
 //Route::get('categoria/{categoria}',[CategoriaController::class,'show'])->name('categoria.show');
 Route::resource('categoria',CategoriaController::class)->parameters([

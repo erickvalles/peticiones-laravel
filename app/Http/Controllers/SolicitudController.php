@@ -12,7 +12,7 @@ class SolicitudController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:alumno')->only(['create']);
+        //$this->middleware('auth:alumno')->only(['create']);
     }
 
     /**
@@ -25,6 +25,12 @@ class SolicitudController extends Controller
         $solicitudes = Solicitud::with('solicitante')->get();
 
         return view('admin.solicitudes.index',compact('solicitudes'));
+    }
+
+    public function solicitudesAlumno(){
+        $solicitudes = auth('alumno')->user()->solicitudes;
+
+        return view('usuario.solicitudes.listar',compact('solicitudes'));
     }
 
     /**
@@ -57,6 +63,8 @@ class SolicitudController extends Controller
         $solicitud->alumno_id = auth('alumno')->user()->id;
 
         $solicitud->save();
+
+        return redirect()->route('solicitudes_alumno');
     }
 
     /**
