@@ -17,6 +17,7 @@
                   <th>Fecha</th>
                   <th>Estatus</th>
                   <th>Solicitante</th>
+                  <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,9 @@
                   <td>{{$solicitud->created_at}}</td>
                   <td>{{$solicitud->estatus_actual}}</td>
                   <td>{{$solicitud->solicitante->nombre_completo}}</td>
+                  <td>
+                        <a href="{{route('solicitud.edit',$solicitud)}}">Editar</a>
+                  </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -37,9 +41,10 @@
                     <th>Fecha</th>
                     <th>Estatus</th>
                     <th>Solicitante</th>
+                    <th>Acciones</th>
                 </tr>
                 </tfoot>
-              </table>
+            </table>
         </div>
       </div>
     </div>

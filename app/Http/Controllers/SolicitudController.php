@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestGuardaSolicitud;
+use App\Models\Seguimiento;
 use App\Models\Solicitud;
+use App\Models\Status;
 use App\Models\Tramite;
 use Illuminate\Http\Request;
 
@@ -86,7 +88,18 @@ class SolicitudController extends Controller
      */
     public function edit(Solicitud $solicitud)
     {
-        //
+        $estados = Status::all();
+        if($solicitud->estatus_actual == 'nuevo'){
+            $cambio = new Seguimiento([
+                'nota'=>"Leído por el coordinador",
+                'status_id'=>2//leído
+            ]);
+            $solicitud->cambios()->save($cambio);
+            $solicitud->estatus_actual = "Leído";
+            $solicitud->save();
+        }
+
+        return view('admin.solicitudes.seguimiento',compact('solicitud','estados'));
     }
 
     /**

@@ -14,4 +14,8 @@ class Solicitud extends Model
         return $this->belongsTo(Alumno::class,'alumno_id','id');
     }
 
+    public function cambios(){
+        return $this->hasMany(Seguimiento::class,'solicitud_id','id');
+    }
+
 }
