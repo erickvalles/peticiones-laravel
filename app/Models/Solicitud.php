@@ -18,4 +18,8 @@ class Solicitud extends Model
         return $this->hasMany(Seguimiento::class,'solicitud_id','id');
     }
 
+    public function ultimoCambio(){
+        return $this->hasOne(Seguimiento::class,'solicitud_id','id')->latestOfMany();
+    }
+
 }

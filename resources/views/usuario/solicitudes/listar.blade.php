@@ -16,6 +16,7 @@
                          <th>Fecha</th>
                          <th>Detalles</th>
                          <th>Estatus actual</th>
+                         <th>Notas</th>
                       </tr>
                    </thead>
                    <tbody>
@@ -25,6 +26,10 @@
                             <td>{{$solicitud->created_at}}</td>
                             <td>{{$solicitud->detalle}}</td>
                             <td>{{$solicitud->estatus_actual}}</td>
+                            <td>@if ($solicitud->ultimoCambio != null)
+                                {{$solicitud->ultimoCambio->nota}}
+                            @endif
+                            </td>
                         </tr>
                     @empty
                     <tr>

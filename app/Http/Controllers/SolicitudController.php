@@ -31,7 +31,7 @@ class SolicitudController extends Controller
 
     public function solicitudesAlumno(){
         $solicitudes = auth('alumno')->user()->solicitudes;
-
+        //dd($solicitudes[3]->ultimoCambio);
         return view('usuario.solicitudes.listar',compact('solicitudes'));
     }
 
@@ -111,7 +111,15 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, Solicitud $solicitud)
     {
-        //
+        $cambio = new Seguimiento([
+            'nota'=>$request->notas,
+            'status_id'=>$request->estatus
+        ]);
+        $solicitud->cambios()->save($cambio);
+        $estado = Status::find($request->estatus);
+        $solicitud->estatus_actual = $estado->nombre;
+        $solicitud->save();
+        return redirect()->route('solicitud.edit',$solicitud);
     }
 
     /**

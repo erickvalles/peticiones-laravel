@@ -1,7 +1,11 @@
 @extends('admin.layout')
 
 @section('admin_content')
+<form action="{{route('solicitud.update',$solicitud)}}" method="POST">
+    @csrf
+    @method("PUT")
     <div class="row">
+
       <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-header">
@@ -27,7 +31,9 @@
               <select id="estatus" name="estatus" class="form-control custom-select">
                 <option selected disabled>Seleccione un estatus</option>
                 @foreach ($estados as $estado)
-                    <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                    <option value="{{$estado->id}}" @if ($solicitud->estatus_actual == $estado->nombre)
+                        selected
+                    @endif>{{$estado->nombre}}</option>
                 @endforeach
 
             </select>
@@ -72,12 +78,13 @@
         </div>
         <!-- /.card -->
       </div>
+
     </div>
     <div class="row">
       <div class="col-6">
         <a href="#" class="btn btn-secondary">Cancel</a>
-        <input type="submit" value="Create new Project" class="btn btn-success float-right">
+        <input type="submit" value="Actualizar solicitud" class="btn btn-primary float-right">
       </div>
     </div>
-
+</form>
 @stop
