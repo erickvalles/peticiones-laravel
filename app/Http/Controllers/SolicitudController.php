@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestGuardaSolicitud;
+use App\Mail\NotificacionUsuario;
 use App\Models\Seguimiento;
 use App\Models\Solicitud;
 use App\Models\Status;
 use App\Models\Tramite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SolicitudController extends Controller
 {
@@ -119,6 +121,14 @@ class SolicitudController extends Controller
         $estado = Status::find($request->estatus);
         $solicitud->estatus_actual = $estado->nombre;
         $solicitud->save();
+
+        $datosEmail = [
+            "titulo"=>"Hola ".$solicitud->solicitante->nombre,
+            "cuerpo"=>"Tu solicitud ha cambiado al estatus: ".$solicitud->estatus_actual
+        ];
+
+        Mail::to($solicitud->solicitante->correo)->send(new NotificacionUsuario($datosEmail));
+
         return redirect()->route('solicitud.edit',$solicitud);
     }
 
