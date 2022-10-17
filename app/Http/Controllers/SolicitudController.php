@@ -10,13 +10,15 @@ use App\Models\Status;
 use App\Models\Tramite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\SolicitudRepository;
 
 class SolicitudController extends Controller
 {
+    private SolicitudRepository $solicitudes;
 
-    public function __construct()
+    public function __construct(SolicitudRepository $solicitudes)
     {
-        //$this->middleware('auth:alumno')->only(['create']);
+        $this->solicitudes = $solicitudes;
     }
 
     /**
@@ -26,14 +28,13 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = Solicitud::with('solicitante')->get();
+        $solicitudes = $this->solicitudes->obtenerTodasSolicitudes();
 
         return view('admin.solicitudes.index',compact('solicitudes'));
     }
 
     public function solicitudesAlumno(){
-        $solicitudes = auth('alumno')->user()->solicitudes;
-        //dd($solicitudes[3]->ultimoCambio);
+        $solicitudes = $this->solicitudes->solicitudesPorAlumno(auth('alumno')->user());
         return view('usuario.solicitudes.listar',compact('solicitudes'));
     }
 
@@ -58,17 +59,13 @@ class SolicitudController extends Controller
     public function store(RequestGuardaSolicitud $request)
     {
 
-        //dd(auth('alumno')->user());
-        $solicitud = new Solicitud();
-        $solicitud->detalle = $request["detalle"];
-        $solicitud->estatus_actual = "nuevo";
-        $solicitud->archivo = "";
-        $solicitud->tramite_id = $request["tramite_id"];
-        $solicitud->alumno_id = auth('alumno')->user()->id;
+        if($this->solicitudes->crearSolicitud($request)){
+            return redirect()->route('solicitudes_alumno');
+        }else{
+            return redirect()->back()->withErrors(["error"=>"Error al guardar"]);
+        }
 
-        $solicitud->save();
 
-        return redirect()->route('solicitudes_alumno');
     }
 
     /**
@@ -127,7 +124,7 @@ class SolicitudController extends Controller
             "cuerpo"=>"Tu solicitud ha cambiado al estatus: ".$solicitud->estatus_actual
         ];
 
-        Mail::to($solicitud->solicitante->correo)->send(new NotificacionUsuario($datosEmail));
+        //Mail::to($solicitud->solicitante->correo)->send(new NotificacionUsuario($datosEmail));
 
         return redirect()->route('solicitud.edit',$solicitud);
     }
