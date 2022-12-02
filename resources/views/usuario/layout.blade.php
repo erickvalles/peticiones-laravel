@@ -7,7 +7,7 @@
  // GITHUB: https://github.com/themefisher/
 -->
 
-<html lang="zxx">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -83,9 +83,8 @@
       <div class="columns is-multiline is-align-items-center border-bottom py-5">
          <div class="column is-4-desktop is-12-tablet">
             <ul class="list-inline footer-menu has-text-centered has-text-left-desktop">
-               <li class="list-inline-item"><a href="changelog.html">Changelog</a></li>
-               <li class="list-inline-item"><a href="contact.html">contact</a></li>
-               <li class="list-inline-item"><a href="search.html">Search</a></li>
+               <li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/CIELECuvalles">Contacto</a></li>
+
             </ul>
          </div>
          <div class="column is-4-desktop is-12-tablet">
@@ -95,10 +94,8 @@
          </div>
          <div class="column is-4-desktop is-12-tablet">
             <ul class="list-inline social-icons has-text-right-desktop has-text-centered">
-               <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
-               <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
-               <li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
-               <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
+               <li class="list-inline-item"><a href="https://www.facebook.com/CIELECuvalles"><i class="ti-facebook"></i></a></li>
+
             </ul>
          </div>
       </div>
