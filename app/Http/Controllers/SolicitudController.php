@@ -28,9 +28,12 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = $this->solicitudes->obtenerTodasSolicitudes();
+        $solicitudesNuevas = $this->solicitudes->obtenerSolicitudesPorEstatus('nuevo');
+        $solicitudesLeidas = $this->solicitudes->obtenerSolicitudesPorEstatus('Leído');
+        $solicitudesEnProceso = $this->solicitudes->obtenerSolicitudesPorEstatus('En proceso');
+        $solicitudesFinalizadas = $this->solicitudes->obtenerSolicitudesPorEstatus('Finalizado');
 
-        return view('admin.solicitudes.index',compact('solicitudes'));
+        return view('admin.solicitudes.index',compact('solicitudesNuevas','solicitudesLeidas','solicitudesEnProceso','solicitudesFinalizadas'));
     }
 
     public function solicitudesAlumno(){

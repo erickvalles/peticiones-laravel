@@ -9,6 +9,9 @@ class SolicitudRepository{
     public function obtenerTodasSolicitudes(){
         return Solicitud::with('solicitante')->get();
     }
+    public function obtenerSolicitudesPorEstatus($estatus){
+        return Solicitud::where('estatus_actual',$estatus)->orderBy('id','desc')->get();
+    }
 
     public function solicitudesPorAlumno(Alumno $alumno){
         return $alumno->solicitudes;

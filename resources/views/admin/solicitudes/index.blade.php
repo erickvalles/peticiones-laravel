@@ -6,45 +6,39 @@
 
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h5 class="m-0">Solicitudes nuevas</h5>
+          <h5 class="m-0">Solicitudes</h5>
         </div>
         <div class="card-body">
-            <table id="tabla_solicitudes" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Detalle</th>
-                  <th>Fecha</th>
-                  <th>Estatus</th>
-                  <th>Solicitante</th>
-                  <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($solicitudes as $solicitud)
-                <tr>
-                  <td>{{$solicitud->id}}</td>
-                  <td>{{$solicitud->detalle}}</td>
-                  <td>{{$solicitud->created_at}}</td>
-                  <td>{{$solicitud->estatus_actual}}</td>
-                  <td>{{$solicitud->solicitante->nombre_completo}}</td>
-                  <td>
-                        <a href="{{route('solicitud.edit',$solicitud)}}">Editar</a>
-                  </td>
-                </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Detalle</th>
-                    <th>Fecha</th>
-                    <th>Estatus</th>
-                    <th>Solicitante</th>
-                    <th>Acciones</th>
-                </tr>
-                </tfoot>
-            </table>
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Nuevas</button>
+            </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-leidas-tab" data-toggle="pill" data-target="#pills-leidas" type="button" role="tab" aria-controls="pills-leidas" aria-selected="true">Leídas</button>
+              </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">En proceso</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Concluidas</button>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                @include('admin.solicitudes.components.tabla', ['solicitudes'=>$solicitudesNuevas])
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                @include('admin.solicitudes.components.tabla', ['solicitudes'=>$solicitudesEnProceso])
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                @include('admin.solicitudes.components.tabla', ['solicitudes'=>$solicitudesFinalizadas])
+            </div>
+              <div class="tab-pane fade" id="pills-leidas" role="tabpanel" aria-labelledby="pills-leidas-tab">
+                  @include('admin.solicitudes.components.tabla', ['solicitudes'=>$solicitudesLeidas])
+              </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -63,7 +57,7 @@
 
 @push('scripts')
 <!-- DataTables  & Plugins -->
-<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+
 <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
